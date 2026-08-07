@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifeOS — World Evolution Simulator</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <!-- Start Screen -->
+    <div id="start-screen" class="screen active">
+      <div class="start-content">
+        <div class="logo">✦ LIFEOS ✦</div>
+        <h1>Shape a World.<br>Guide Life.<br>Decide Its Fate.</h1>
+        <p class="subtitle">You are the architect of a newborn planet. Life will emerge, adapt, and compete — but only you can steer evolution toward sapience… or extinction.</p>
+        <button id="btn-new-world" class="btn-primary">Create New World</button>
+        <div class="start-features">
+          <div class="feature"><span>🌍</span> Procedural worlds</div>
+          <div class="feature"><span>🧬</span> Emergent evolution</div>
+          <div class="feature"><span>⚡</span> Your decisions matter</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Game -->
+    <div id="game-screen" class="screen">
+      <header class="game-header">
+        <div class="header-left">
+          <span class="world-name" id="world-name">Untitled World</span>
+          <span class="epoch-badge" id="epoch-display">Epoch 0</span>
+        </div>
+        <div class="header-center">
+          <div class="stat-pill" title="Years elapsed">
+            <span class="stat-icon">⏳</span>
+            <span id="years-display">0</span> yrs
+          </div>
+          <div class="stat-pill" title="Species count">
+            <span class="stat-icon">🧬</span>
+            <span id="species-count">0</span> species
+          </div>
+          <div class="stat-pill" title="Biodiversity index">
+            <span class="stat-icon">🌿</span>
+            <span id="biodiversity">0</span>%
+          </div>
+          <div class="stat-pill" title="Intelligence peak">
+            <span class="stat-icon">🧠</span>
+            <span id="intelligence-peak">0</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <button id="btn-advance" class="btn-advance">Advance Epoch ▶</button>
+        </div>
+      </header>
+
+      <main class="game-main">
+        <!-- Left: World View -->
+        <section class="panel world-panel">
+          <h2>Planet</h2>
+          <canvas id="world-canvas" width="480" height="480"></canvas>
+          <div class="world-stats">
+            <div class="world-stat">
+              <label>Temperature</label>
+              <div class="bar-track"><div class="bar-fill temp" id="bar-temp"></div></div>
+              <span id="val-temp">15°C</span>
+            </div>
+            <div class="world-stat">
+              <label>Atmosphere O₂</label>
+              <div class="bar-track"><div class="bar-fill o2" id="bar-o2"></div></div>
+              <span id="val-o2">0%</span>
+            </div>
+            <div class="world-stat">
+              <label>Water Coverage</label>
+              <div class="bar-track"><div class="bar-fill water" id="bar-water"></div></div>
+              <span id="val-water">0%</span>
+            </div>
+            <div class="world-stat">
+              <label>Tectonic Activity</label>
+              <div class="bar-track"><div class="bar-fill tectonic" id="bar-tectonic"></div></div>
+              <span id="val-tectonic">Low</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Center: Species & Events -->
+        <section class="panel center-panel">
+          <div class="tabs">
+            <button class="tab active" data-tab="species">Species</button>
+            <button class="tab" data-tab="events">Event Log</button>
+            <button class="tab" data-tab="tree">Evolution Tree</button>
+          </div>
+          <div class="tab-content active" id="tab-species">
+            <div id="species-list" class="species-list"></div>
+          </div>
+          <div class="tab-content" id="tab-events">
+            <div id="event-log" class="event-log"></div>
+          </div>
+          <div class="tab-content" id="tab-tree">
+            <canvas id="tree-canvas" width="600" height="400"></canvas>
+          </div>
+        </section>
+
+        <!-- Right: Decisions -->
+        <section class="panel decisions-panel">
+          <h2>Your Decree</h2>
+          <p class="decisions-hint" id="decisions-hint">Choose one intervention per epoch. Your power shapes destiny.</p>
+          <div id="decisions-list" class="decisions-list"></div>
+          <div class="decision-points">
+            <span>Interventions remaining:</span>
+            <span id="decision-points" class="points-value">1</span>
+          </div>
+        </section>
+      </main>
+
+      <!-- Decision Modal -->
+      <div id="decision-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+          <h3 id="modal-title">Decision</h3>
+          <p id="modal-desc"></p>
+          <div id="modal-options" class="modal-options"></div>
+          <button id="modal-cancel" class="btn-secondary">Cancel</button>
+        </div>
+      </div>
+
+      <!-- Event Toast -->
+      <div id="toast-container"></div>
+    </div>
+
+    <!-- End Screen -->
+    <div id="end-screen" class="screen">
+      <div class="end-content">
+        <div id="end-icon" class="end-icon">🌍</div>
+        <h1 id="end-title">World Complete</h1>
+        <p id="end-desc"></p>
+        <div id="end-stats" class="end-stats"></div>
+        <button id="btn-restart" class="btn-primary">Create Another World</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
