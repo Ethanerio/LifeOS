@@ -1,4 +1,4 @@
-# Genesis — World Evolution Simulator
+# LifeOS — World Evolution Simulator
 
 You are the architect of a newborn planet. Life will emerge, adapt, compete, and evolve — but **you** decide its fate.
 
